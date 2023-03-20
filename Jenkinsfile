@@ -13,6 +13,8 @@ pipeline {
                 echo "Building.."
                 sh '''
                 cd myapp
+                bash build.sh
+
                 '''
             }
         }
@@ -21,8 +23,7 @@ pipeline {
                 echo "Testing.."
                 sh '''
                 cd myapp
-                bash build.sh
-                '''
+                   '''
             }
         }
         stage('Deliver') {
