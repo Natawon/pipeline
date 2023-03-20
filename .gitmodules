@@ -1,0 +1,3 @@
+[submodule "froggenius/assets/froggenius/assets/docker-web-template"]
+	path = froggenius/assets/froggenius/assets/docker-web-template
+	url = https://github.com/Natawon/pipeline.git
