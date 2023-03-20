@@ -1,0 +1,8 @@
+#!/bin/bash
+#mysql --host=68.183.225.86 --user=root --password=dootvazws3e
+#apt install mysql-client-core-5.7
+mysql --host=103.20.206.60 --user=root --password=dootvazws3e -e "CREATE DATABASE $1;"
+#mysql --host=68.183.225.86 --user=root --password=dootvazws3e $1 < "/data/$1/default_frog_e_learning__201903291710.sql"
+#mysql --host=103.20.206.60 --user=root --password=dootvazws3e $1 < "/data/$1/default_frog_e_learning.sql"
+
+mysql --host=103.20.206.60 --user=root --password=dootvazws3e $1 < "/data/$1/dev-frog2-prepare_2020-04-14.sql"

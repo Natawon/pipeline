@@ -1,0 +1,25 @@
+#!/bin/bash
+docker exec -ti $1 sh -c "git clone https://nathaworn.pa.dootvmedia:Natawon99@gitlab.com/dootvmedia-labs/frog-genius-v4.git /usr/share/nginx/html"
+
+#docker exec -ti $1 sh -c "git clone https://nathaworn.pa.dootvmedia:Natawon99@gitlab.com/dootvmedia-labs/dip.git /usr/share/nginx/html"
+docker exec -ti $1 sh -c "composer install -d /usr/share/nginx/html/api"
+
+docker exec -ti $1 sh -c "cp -rf /usr/share/nginx/html/_files_copy/* /usr/share/nginx/html"
+docker exec -ti $1 sh -c "cp /usr/share/nginx/html/config/config-dist.php /usr/share/nginx/html/config/config.php"
+docker exec -ti $1 sh -c "cp /usr/share/nginx/html/backend/config/config-dist.js /usr/share/nginx/html/backend/config/config.js"
+docker exec -ti $1 sh -c "cp /usr/share/nginx/html/api/.env.example /usr/share/nginx/html/api/.env"
+docker exec -ti $1 sh -c "cp /usr/share/nginx/html/service-upload/config/config-dist.php /usr/share/nginx/html/service-upload/config/config.php"
+docker exec -ti $1 sh -c "cp /usr/share/nginx/html/scss/config-dist.scss /usr/share/nginx/html/scss/config.scss"
+
+#docker exec -ti $1 sh -c "php /usr/share/nginx/html/api/artisan geoip:update"
+
+docker exec -ti $1 sh -c "sass --update /usr/share/nginx/html/scss"
+
+
+docker exec -ti $1 sh -c "echo 'sass --update /usr/share/nginx/html/scss;' >> /usr/share/nginx/html/.git/hooks/post-merge;"
+docker exec -ti $1 sh -c "echo 'composer install -d /usr/share/nginx/html/api;' >> /usr/share/nginx/html/.git/hooks/post-merge;"
+#docker exec -ti $1 sh -c "echo 'php /usr/share/nginx/html/api/artisan geoip:update;' >> /usr/share/nginx/html/.git/hooks/post-merge;"
+docker exec -ti $1 sh -c "echo 'php /usr/share/nginx/html/api/artisan migrate;' >> /usr/share/nginx/html/.git/hooks/post-merge;"
+docker exec -ti $1 sh -c "echo 'chown -R www-data:www-data /usr/share/nginx/html;' >> /usr/share/nginx/html/.git/hooks/post-merge;"
+docker exec -ti $1 sh -c "chmod +x /usr/share/nginx/html/.git/hooks/post-merge;"
+docker exec -ti $1 sh -c "chown -R www-data:www-data /usr/share/nginx/html;"
