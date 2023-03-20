@@ -1,0 +1,45 @@
+---
+# ansible-playbook build-docker.yaml --ask-pass --extra-vars "project=PAT http_port=8080 https_port=8443"
+# ansible-playbook -i ./hosts -l provision build-docker.yaml -k -K --ask-pass --extra-vars '{"project":"PAT", "http_port":"8080", "https_port":"8443" }'
+
+- hosts: web
+  tasks:
+    # - name: copy container template to remote host
+    #   synchronize:
+    #     src: ./assets/docker-web-template/
+    #     dest: /data/{{ project }}
+    #     checksum: yes
+    #     rsync_opts:
+    #       - "--exclude=.git"
+
+    - name: copy container template to remote host
+      copy:
+        src: ./assets/docker-web-template/
+        dest: /data/{{ project }}
+
+    - name: copy docker-compose-template.yml to docker-compose.yml
+      copy:
+        src: /data/{{ project }}/docker-compose-template.yml
+        dest: /data/{{ project }}/docker-compose.yml
+        remote_src: yes
+
+    - name: config project name {{ project }} in docker-compose.yml
+      replace:
+          path: /data/{{ project }}/docker-compose.yml
+          regexp: 'PROJECT'
+          replace: "{{ project }}"
+          backup: yes
+
+    - name: config HTTP port {{ http_port }} in docker-compose.yml
+      replace:
+          path: /data/{{ project }}/docker-compose.yml
+          regexp: "HTTP_PORT"
+          replace: "{{ http_port }}"
+          backup: yes
+
+    - name: config HTTPS port {{ https_port }} in docker-compose.yml
+      replace:
+          path: /data/{{ project }}/docker-compose.yml
+          regexp: 'HTTPS_PORT'
+          replace: "{{ https_port }}"
+          backup: yes

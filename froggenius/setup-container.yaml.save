@@ -1,0 +1,22 @@
+---
+# ansible-playbook setup-container.yaml --ask-pass --extra-vars "project=PAT"
+
+- hosts: web
+  tasks:
+
+    - name: pull an image
+      docker_image:
+        name: dootvmedia/ubuntu:platform
+
+    - name: run docker container
+     # docker_service:
+       # project_src: /data/{{ project }}
+      command:  
+     
+    - name: waiting container to complete setup
+      pause:
+        seconds: 5
+
+    - name: run script in container 
+      command: bash /data/{{ project }}/build.sh {{ project }}
+

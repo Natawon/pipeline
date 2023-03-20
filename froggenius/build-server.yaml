@@ -1,0 +1,62 @@
+
+# ansible-playbook build-server.yaml --ask-pass
+
+- hosts: web
+  tasks:
+    - name: Install prerequisites (ติดตั้งโปรแกรมเบื้องต้น)
+      apt:
+        name:
+          [
+            "apt-transport-https",
+            "ca-certificates",
+            "curl",
+            "software-properties-common",
+          ]  
+        update_cache: yes
+
+    - name: Install additional package (ติดตั้งโปรแกรมเพิ่มเติม) cifs-utils, zip, unzip,...
+      apt:
+        name: ["cifs-utils", "zip", "unzip","python-pip","mysql-client"]
+
+    - name: Install python package
+      pip:
+        name: ["docker","docker-compose"]
+
+    - name: Add Docker GPG key
+      apt_key: url=https://download.docker.com/linux/ubuntu/gpg
+
+    - name: Add Docker APT repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+
+    - name: Install Docker
+      apt: name=docker-ce
+
+    - name: Install Docker Compose
+      get_url:
+        url: https://github.com/docker/compose/releases/download/1.24.0/docker-compose-Linux-x86_64
+        dest: "/usr/local/bin/docker-compose"
+        mode: 0755
+
+ #   - name: config domain {{ domain }} to /etc/hosts
+ #     lineinfile:
+ #       path: /etc/hosts
+ #       line: "127.0.0.1 {{ domain }}"
+ #       create: yes
+
+    # - name: Mount samba to /raid
+    #   mount:
+    #     path: /raid
+    #     src: LABEL=SOME_LABEL
+    #     fstype: cifs
+    #     state: present
+ #   - name: create directory /raid
+ #     file:
+ #       path: /raid
+ #       state: directory
+
+#    - name: mount /raid  to CIFS (Samba)
+#      command: "mount -t cifs -o username=test,password=vrthebest //128.199.165.124/sambashare /raid"
+#      ignore_errors: yes
+  
+

@@ -1,0 +1,2 @@
+ansible-playbook -i ./hosts main.yaml --extra-vars "domain=training.frogfenius.com project=training http_port=80 https_port=443"
+
