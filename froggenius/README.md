@@ -1,6 +1,13 @@
 Automated deploy script
 Technologies: Ansible, Docker, Shell Scritps
 
+
+Scritp use: 
+ansible-playbook -i ./hosts main.yaml --extra-vars "domain=test.froggenius.com project=test http_port=8001 https_port=9001" -vv
+
+
+--------------------------------------------------------------------------------
+
 EXAMPLE
  - ansible-playbook main.yaml --ask-pass --extra-vars "domain=DEMO.FrogGenius.com project=PAT http_port=8080 https_port=8443"
  - ansible-playbook -i ./hosts -l provision main.yaml --ask-pass --extra-vars "domain=DEMO.FrogGenius.com project=PAT http_port=8080 https_port=8443"
