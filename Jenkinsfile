@@ -20,11 +20,11 @@ pipeline {
                 '''
             }
         }
-        stage('Test') {
+        stage('Run') {
             steps {
                 echo "Testing.."
                 sh '''
-                cd myapp
+                cd froggenius
                 bash build.sh
                    '''
             }
