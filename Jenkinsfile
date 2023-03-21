@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                 apk add sshpass bash
+                 apk add --update --no-cache openssh sshpass bash
                  ansible --version
                 
 
