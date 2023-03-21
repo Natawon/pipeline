@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                apk update
+                sudo apk update
                 
 
                 '''
