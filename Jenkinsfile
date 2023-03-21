@@ -13,6 +13,7 @@ pipeline {
                 echo "Building.."
                 sh '''
                  uname -a
+                 ansible --version
                 
 
                 '''
