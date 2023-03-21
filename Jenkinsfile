@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                sudo apk update
+                 uname -a
                 
 
                 '''
