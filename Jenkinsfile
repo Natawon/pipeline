@@ -8,9 +8,13 @@ pipeline {
 
     stages {
 
-        stage ('echo'){
+        stage ('test run'){
             steps {
+                sh '''
+                 cd froggenius
                 
+
+                '''
 
                     ansiblePlaybook( 
 
