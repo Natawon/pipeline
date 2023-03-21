@@ -24,7 +24,7 @@ pipeline {
                 echo "Execute.."
                 sh '''
                 cd froggenius
-                ansible -i ./hosts -m ping web -vvv
+                ansible web -m ping -vvv
                    '''
             }
         }
