@@ -13,7 +13,7 @@ pipeline {
                 echo "Building.."
                 sh '''
                  uname -a
-                 apk add bash
+                 apk add bash sshpass
                  ansible --version
                 
 
