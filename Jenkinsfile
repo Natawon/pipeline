@@ -1,33 +1,36 @@
 pipeline {
-
-    agent {
-        
-        label 'ansible'
-
-    }
-
+    agent any
+    // triggers {
+    //     pollSCM '* * * * *'
+    // }
     stages {
-
-        stage ('test run'){
+        stage('Building ') {
             steps {
+                echo "Building.."
                 sh '''
-                 cd froggenius
+                 uname -a
+                 ansible --version
                 
 
                 '''
-
-                    ansiblePlaybook( 
-
-                        playbook: './main.yaml',
-                        inventory: './hosts', 
-                        credentialsId: 'sample-ssh-key',
-                        colorized: true
-
-                    ) 
-                
             }
         }
-        
-    }    
-
+        stage('Execute') {
+            steps {
+                echo "Execute.."
+                sh '''
+                cd froggenius
+                ansible -i hosts -m ping web -vvv
+                   '''
+            }
+        }
+        stage('Deliver') {
+            steps {
+                echo 'Deliver....'
+                sh '''
+                echo "doing delivery stuff.."
+                '''
+            }
+        }
+    }
 }
