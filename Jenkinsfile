@@ -10,7 +10,7 @@ pipeline {
 
         stage ('echo'){
             steps {
-                ansiColor('xterm') {
+                
 
                     ansiblePlaybook( 
 
@@ -20,7 +20,7 @@ pipeline {
                         colorized: true
 
                     ) 
-                }
+                
             }
         }
         
