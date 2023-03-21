@@ -12,8 +12,8 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                cd myapp
-                bash build.sh
+                apk add ansible
+                
 
                 '''
             }
@@ -23,6 +23,7 @@ pipeline {
                 echo "Testing.."
                 sh '''
                 cd myapp
+                bash build.sh
                    '''
             }
         }
