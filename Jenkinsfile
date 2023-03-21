@@ -13,6 +13,7 @@ pipeline {
                 echo "Building.."
                 sh '''
                  apk add --update --no-cache openssh sshpass bash
+                 export ANSIBLE_HOST_KEY_CHECKING=False
                  ansible --version
                 
 

@@ -7,7 +7,7 @@
 #WEB-SERVER ansible_host=103.20.206.59 ansible_connection=ssh ansible_port=22 ansible_user=root ansible_ssh_pass=dootv4219Thebest
 #WEB-SERVER ansible_host=167.99.76.0 ansible_connection=ssh ansible_port=22 ansible_user=root ansible_ssh_pass=vrthefrog
 #WEB-SERVER ansible_host=203.146.129.65 ansible_connection=ssh ansible_port=22 ansible_user=root ansible_ssh_pass=vrthebest
-WEB-SERVER ansible_host=159.65.129.16 ansible_connection=ssh ansible_port=22 ansible_user=root ansible_ssh_pass=VRThefrog123s host_key_checking=false
+WEB-SERVER ansible_host=159.65.129.16 ansible_connection=ssh ansible_port=22 ansible_user=root ansible_ssh_pass=VRThefrog123s 
 
 
 #WEB-SERVER ansible_host=128.199.103.161 ansible_connection=ssh ansible_port=22 ansible_user=root ansible_ssh_pass=VRThefrog123s
