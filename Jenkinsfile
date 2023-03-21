@@ -1,7 +1,7 @@
 pipeline {
     agent { 
         node {
-            label 'ansible'
+            label 'docker-agent-python'
             }
       }
     triggers {
